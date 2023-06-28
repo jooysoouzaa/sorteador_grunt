@@ -1,0 +1,1 @@
+https://sorteadorgruntjoy.vercel.app/
