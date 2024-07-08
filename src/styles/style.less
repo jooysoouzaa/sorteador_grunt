@@ -1,0 +1,134 @@
+//fonte
+@fontePrincipal: Titillium Web, sans-serif;
+
+//Cores
+@corDeFundo: #010101;
+@corDoTexto: #eff1ed;
+
+//Breakpoints
+@breakpointMobile: ~ "(max-width: 767px)";
+@breakpointTablet: ~ "(min-width: 768px) and (max-width: 1023px)";
+/* CONFIGURAÇÕES DA SCROLLBAR */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: @corDeFundo;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: @corDoTexto;
+    border: 1px solid @corDeFundo;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: @corDoTexto;
+    border: 1px solid @corDeFundo;
+}
+
+*::selection {
+    color: @corDeFundo;
+    background: @corDoTexto;
+    -webkit-text-fill-color: @corDeFundo;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Titillium Web", sans-serif;
+    font-weight: 400;
+    list-style: none;
+}
+body{
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url('/src/bg.jpg');
+    background-size: cover; /* Cobrir toda a tela */
+    background-repeat: no-repeat;
+    background-position: center; 
+    color: @corDoTexto;
+    padding: 80px 60px;
+}
+.title{
+    font-size: 3.2em;
+    font-weight: 700;
+    color: @corDoTexto;
+    margin-bottom: 40px;
+
+    @media @breakpointMobile{
+        font-size: 2.6em;
+    }
+
+}
+
+main {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 60px;
+    height: 100%;
+    border-radius: 20px;
+    text-align: center;
+    background: rgba(0, 39, 80, 0.2); /* Fundo semi-transparente */
+    backdrop-filter: blur(10px); /* Efeito de desfoque */
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombras para efeito de profundidade */
+}
+
+
+button{
+    padding: 20px;
+    cursor: pointer;
+    width: 80%;
+    font-size: 1.3em;
+    border-radius: 4px;
+    margin-top: 20px;
+    background: @corDoTexto;
+    border: none;
+    color: @corDeFundo;
+    font-weight: 700;
+}
+
+label{
+font-size: 1.4em;
+}
+
+
+input{
+    display: block;
+    margin: 16px auto 0;
+    font-size: 2em;
+    max-width: 220px;
+    border: none;
+    border-bottom: 2px solid @corDoTexto;
+    background-color: transparent;
+    text-align: center;
+    color: @corDoTexto;
+    &:focus{
+        outline: none;
+    }
+}
+
+.resultado{
+    display: none;
+    font-size: 1.4em;
+    padding: 20px;
+    margin-top: 20px;
+    border: 8px dotted @corDoTexto;
+
+    span{
+        font-weight: 700;
+        font-size: 3em;
+        display: block;
+    }
+}
