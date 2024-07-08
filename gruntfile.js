@@ -21,75 +21,75 @@ module.exports = function (grunt) {
                 files: ['src/styles/**/*less'],
                 tasks: ['less:development'],
             },
-            html:{
+            html: {
                 files: ['src/index.html'],
                 tasks: ['replace:dev']
             }
         },
         replace: {
-                dev: {
-                    options: {
-                        patterns: [
-                            {
-                                match: 'ENDERECO_DO_CSS',
-                                replacement: './styles/style.css'
-
-                            },
-                            {
-                                match: 'ENDERECO_DO_JS',
-                                replacement: '../src/scripts/scripts.js'
-
-                            }
-                        ]
-                    },
-                    files: [
+            dev: {
+                options: {
+                    patterns: [
                         {
-                            expand: true, 
-                            flatten: true,
-                            src: ['src/index.html'],
-                            dest: 'dev/'
+                            match: 'ENDERECO_DO_CSS',
+                            replacement: './styles/style.css'
+
+                        },
+                        {
+                            match: 'ENDERECO_DO_JS',
+                            replacement: '../src/scripts/scripts.js'
+
                         }
                     ]
                 },
-                dist: {
-                    options: {
-                        patterns: [
-                            {
-                                match: 'ENDERECO_DO_CSS',
-                                replacement: './styles/style.min.css'
-                            },
-                            {
-                                match: 'ENDERECO_DO_JS',
-                                replacement: './scripts/scripts.min.js'
-
-                            }
-                        ]
-                    },
-                    files: [
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['src/index.html'],
+                        dest: 'dev/'
+                    }
+                ]
+            },
+            dist: {
+                options: {
+                    patterns: [
                         {
-                            expand: true, 
-                            flatten: true,
-                            src: ['prebuild/index.html'],
-                            dest: 'dist/'
+                            match: 'ENDERECO_DO_CSS',
+                            replacement: './styles/style.min.css'
+                        },
+                        {
+                            match: 'ENDERECO_DO_JS',
+                            replacement: './scripts/scripts.min.js'
+
                         }
                     ]
-                }
-        }, 
-        htmlmin:{
-            dist:{
-                options:{
+                },
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['prebuild/index.html'],
+                        dest: 'dist/'
+                    }
+                ]
+            }
+        },
+        htmlmin: {
+            dist: {
+                options: {
                     removeComments: true,
                     collapseWhitespace: true
                 },
-                files:{
+                files: {
                     'prebuild/index.html': 'src/index.html'
                 }
             }
         },
         clean: ['prebuild'],
-        uglify:{
-            target:{
-                files:{
+        uglify: {
+            target: {
+                files: {
                     'dist/scripts/scripts.min.js': 'src/scripts/scripts.js'
                 }
             }
