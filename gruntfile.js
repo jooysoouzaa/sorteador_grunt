@@ -39,7 +39,7 @@ module.exports = function (grunt) {
                             match: 'ENDERECO_DO_JS',
                             replacement: '../src/scripts/scripts.js'
 
-                        }
+                        },
                     ]
                 },
                 files: [
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
                             match: 'ENDERECO_DO_JS',
                             replacement: './scripts/scripts.min.js'
 
-                        }
+                        },
                     ]
                 },
                 files: [
@@ -71,6 +71,24 @@ module.exports = function (grunt) {
                         flatten: true,
                         src: ['prebuild/index.html'],
                         dest: 'dist/'
+                    }
+                ]
+            },
+            css: {
+                options: {
+                    patterns: [
+                        {
+                            match: /url\('\/src\/images\/bg\.jpg'\)/g,
+                            replacement: "url('/dist/images/bg.jpg')"
+                        }
+                    ]
+                },
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['dist/styles/style.min.css'],
+                        dest: 'dist/styles/'
                     }
                 ]
             }
@@ -98,12 +116,11 @@ module.exports = function (grunt) {
             main: {
                 expand: true,
                 cwd: 'src/',
-                src: 'bg.jpg',
+                src: 'images/bg.jpg',
                 dest: 'dist/'
             }
         }
-
-    })
+    });
 
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -114,5 +131,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('build', ['less:production', 'htmlmin:dist', 'replace:dist', 'clean', 'uglify', 'copy']);
-}
+    grunt.registerTask('build', ['less:production', 'replace:css', 'htmlmin:dist', 'replace:dist', 'clean', 'uglify', 'copy']);
+};
