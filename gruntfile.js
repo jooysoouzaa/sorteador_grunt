@@ -74,15 +74,6 @@ module.exports = function (grunt) {
                     }
                 ]
             },
-            css: {
-                options: {
-                    patterns: [
-                        {
-                            match: /url\('\/src\/images\/bg\.jpg'\)/g,
-                            replacement: "url('/dist/images/bg.jpg')"
-                        }
-                    ]
-                },
                 files: [
                     {
                         expand: true,
@@ -91,8 +82,7 @@ module.exports = function (grunt) {
                         dest: 'dist/styles/'
                     }
                 ]
-            }
-        },
+            },
         htmlmin: {
             dist: {
                 options: {
@@ -116,7 +106,7 @@ module.exports = function (grunt) {
             main: {
                 expand: true,
                 cwd: 'src/',
-                src: 'images/bg.jpg',
+                src: 'images/*',
                 dest: 'dist/'
             }
         }
@@ -131,5 +121,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('build', ['less:production', 'replace:css', 'htmlmin:dist', 'replace:dist', 'clean', 'uglify', 'copy']);
+    grunt.registerTask('build', ['less:production', 'htmlmin:dist', 'replace:dist', 'clean', 'uglify', 'copy']);
 };
